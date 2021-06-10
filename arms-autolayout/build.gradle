@@ -38,5 +38,3 @@ dependencies {
         exclude module: 'vectordrawable-animated'
     }
 }
-
-apply from: '../bintray.gradle'

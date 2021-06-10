@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.github.dcendents.android-maven'  //添加这两行
+group = 'com.whosmyqueen.java'  //GitHub昵称
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
@@ -110,5 +111,3 @@ dependencies {
     //test
     api rootProject.ext.dependencies["timber"]
 }
-
-apply from: '../bintray.gradle'
