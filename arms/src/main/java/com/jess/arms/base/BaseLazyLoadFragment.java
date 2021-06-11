@@ -26,19 +26,19 @@ public abstract class BaseLazyLoadFragment<P extends IPresenter> extends BaseFra
      */
     protected abstract void lazyLoadData();
 
-//    @Override
-//    public void setUserVisibleHint(boolean isVisibleToUser) {
-//        super.setUserVisibleHint(isVisibleToUser);
-//        this.isVisibleToUser = isVisibleToUser;
-//        tryLoadData();
-//    }
-
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        this.isVisibleToUser = hidden;
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
         tryLoadData();
     }
+
+//    @Override
+//    public void onHiddenChanged(boolean hidden) {
+//        super.onHiddenChanged(hidden);
+//        this.isVisibleToUser = hidden;
+//        tryLoadData();
+//    }
 
     /**
      * 保证在initData后触发
