@@ -57,7 +57,7 @@ import javax.inject.Named;
  * <a href="https://github.com/JessYanCoding">Follow me</a>
  * ================================================
  */
-public class AppDelegate implements App, AppLifecycles {
+public class AppDelegate implements AppLifecycles {
     @Inject
     @Named("ActivityLifecycle")
     protected Application.ActivityLifecycleCallbacks mActivityLifecycle;
@@ -70,6 +70,19 @@ public class AppDelegate implements App, AppLifecycles {
     private List<AppLifecycles> mAppLifecycles = new ArrayList<>();
     private List<Application.ActivityLifecycleCallbacks> mActivityLifecycles = new ArrayList<>();
     private ComponentCallbacks2 mComponentCallback;
+    private static AppDelegate appDelegate;
+
+    public static AppDelegate getInstance(Context context) {
+        if (appDelegate == null) {
+            synchronized (AppDelegate.class) {
+                if (appDelegate == null) {
+                    appDelegate = new AppDelegate(context);
+                }
+            }
+        }
+        return appDelegate;
+    }
+
 
     public AppDelegate(@NonNull Context context) {
 
@@ -192,13 +205,7 @@ public class AppDelegate implements App, AppLifecycles {
      * @return AppComponent
      * @see ArmsUtils#obtainAppComponentFromContext(Context) 可直接获取 {@link AppComponent}
      */
-    @NonNull
-    @Override
     public AppComponent getAppComponent() {
-        Preconditions.checkNotNull(mAppComponent,
-                "%s == null, first call %s#onCreate(Application) in %s#onCreate()",
-                AppComponent.class.getName(), getClass().getName(), mApplication == null
-                        ? Application.class.getName() : mApplication.getClass().getName());
         return mAppComponent;
     }
 

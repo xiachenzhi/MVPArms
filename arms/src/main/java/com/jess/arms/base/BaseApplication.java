@@ -87,8 +87,6 @@ public class BaseApplication extends Application implements App {
     @NonNull
     @Override
     public AppComponent getAppComponent() {
-        Preconditions.checkNotNull(mAppDelegate, "%s cannot be null", AppDelegate.class.getName());
-        Preconditions.checkState(mAppDelegate instanceof App, "%s must be implements %s", mAppDelegate.getClass().getName(), App.class.getName());
         return ((App) mAppDelegate).getAppComponent();
     }
 }

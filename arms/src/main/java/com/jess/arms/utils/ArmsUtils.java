@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.jess.arms.base.App;
+import com.jess.arms.base.delegate.AppDelegate;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.integration.AppManager;
 
@@ -453,9 +454,8 @@ public class ArmsUtils {
         AppManager.getAppManager().appExit();
     }
 
+
     public static AppComponent obtainAppComponentFromContext(Context context) {
-        Preconditions.checkNotNull(context, "%s cannot be null", Context.class.getName());
-        Preconditions.checkState(context.getApplicationContext() instanceof App, "%s must be implements %s", context.getApplicationContext().getClass().getName(), App.class.getName());
-        return ((App) context.getApplicationContext()).getAppComponent();
+        return AppDelegate.getInstance(context.getApplicationContext()).getAppComponent();
     }
 }
