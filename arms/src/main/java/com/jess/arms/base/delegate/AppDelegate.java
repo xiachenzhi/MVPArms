@@ -99,8 +99,8 @@ public class AppDelegate implements AppLifecycles {
             module.injectActivityLifecycle(context, mActivityLifecycles);
         }
 
-        appDelegate.attachBaseContext(context);
-        appDelegate.onCreate((Application) context);
+        attachBaseContext(context);
+        onCreate((Application) context);
 
     }
 
