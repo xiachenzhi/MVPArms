@@ -98,6 +98,10 @@ public class AppDelegate implements AppLifecycles {
             //将框架外部, 开发者实现的 Activity 的生命周期回调 (ActivityLifecycleCallbacks) 存入 mActivityLifecycles 集合 (此时还未注册回调)
             module.injectActivityLifecycle(context, mActivityLifecycles);
         }
+
+        appDelegate.attachBaseContext(context);
+        appDelegate.onCreate((Application) context);
+
     }
 
     @Override
